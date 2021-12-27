@@ -43,11 +43,18 @@ const App = () => {
           }, 4000);
         })
         .catch((error) => {
-          console.log(error.response.data);
           setNotification({
-            message: `Person validation failed ${error.response.data}`,
+            message: `${error.response.data.error}`,
             messageType: "error",
           });
+          console.log(error.response.data);
+
+          setTimeout(() => {
+            setNotification({
+              message: null,
+              messageType: null,
+            });
+          }, 4000);
         });
     } else {
       const confirmReplacement = window.confirm(
