@@ -42,7 +42,13 @@ const App = () => {
             });
           }, 4000);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error.response.data);
+          setNotification({
+            message: `Person validation failed ${error.response.data}`,
+            messageType: "error",
+          });
+        });
     } else {
       const confirmReplacement = window.confirm(
         `${newName} is already added to phonebook, replace the old number with new one?`
